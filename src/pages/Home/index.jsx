@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../../components/Header";
 import { getInitialData } from "../../utils";
 import Card from "../../components/Card";
+import PrimaryLayout from "../../components/layouts/PrimaryLayout";
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,14 +14,26 @@ class Home extends React.Component {
 
     render() {
         return (
-            <>
-                <Header/>
-                {
-                    getInitialData.map((data, index) => (
-                        <Card key={index} title={data.title} body={data.body} createdAt={data.createdAt} />
-                    ))
-                }
-            </>
+            <PrimaryLayout>
+                <div className="flex flex-col items-center justify-center gap-10"  >
+                    <div>
+                        <h1 className="text-3xl font-semibold mb-6" >Catatan Aktif</h1>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
+                            {getInitialData().map((data, index) => (
+                                <Card key={index} {...data} />
+                            ))}
+                        </div>
+                    </div>
+                    <div>
+                        <h1 className="text-3xl text-yellow-500 font-semibold mb-6" >Arsip</h1>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
+                            {getInitialData().map((data, index) => (
+                                <Card key={index} {...data} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </PrimaryLayout>
         )
     }
 }

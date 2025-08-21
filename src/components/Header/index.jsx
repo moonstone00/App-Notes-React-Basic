@@ -6,7 +6,7 @@ export default function Header() {
 
     return (
         <header className='flex items-center justify-between p-6 border-b border-slate-700 shadow-lg shadow-slate-400' >
-            <h1 className='text-3xl font-bold' >My Notes.</h1>
+            <h1 className='text-3xl font-bold' ><span className="text-red-500" >My</span> <span className="text-yellow-500" >Notes.</span></h1>
             <form className='w-[30%]' >
                 <input className='w-full border rounded-sm px-4 py-1' placeholder='Search notes...' />
             </form>
