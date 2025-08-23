@@ -1,12 +1,16 @@
 import Card from "../../components/Card";
 import PrimaryLayout from "../../components/layouts/PrimaryLayout";
 import { useAtom } from "jotai";
-import { notesAtom } from "../../jotai/atoms";
+import { notesAtom, searchAtom } from "../../jotai/atoms";
 
 export default function Home() {
     const [notes, setNotes] = useAtom(notesAtom);
-    const activeNotes = notes.filter(note => !note.archived);
-    const arsipNotes = notes.filter(note => note.archived);
+    const [searchTerm] = useAtom(searchAtom);
+    
+    const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const activeNotes = filteredNotes.filter(note => !note.archived);
+    const arsipNotes = filteredNotes.filter(note => note.archived);
 
     const handleToggleArchive = (id) => {
         setNotes((prevNotes) => 
