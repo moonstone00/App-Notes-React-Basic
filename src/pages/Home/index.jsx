@@ -15,6 +15,13 @@ export default function Home() {
             )
         )
     }
+
+    const handleDeleteData = (id) => {
+        setNotes((prevNotes) => 
+            prevNotes.filter((note) => note.id !== id)
+        )
+    }
+
     
     return (
         <PrimaryLayout>
@@ -25,7 +32,7 @@ export default function Home() {
                         {
                             activeNotes.length > 0 ? (
                                 activeNotes.map((data, index) => (
-                                    <Card key={index} {...data} onToggleArchive={() => handleToggleArchive(data.id)} />
+                                    <Card key={index} {...data} onToggleArchive={() => handleToggleArchive(data.id)} onDelete={() => handleDeleteData(data.id)} />
                                 ))
                             ) : (
                                 <p className="text-red-500 text-xl font-semibold" >Catatan Aktif Tidak Tersedia</p>
@@ -39,7 +46,7 @@ export default function Home() {
                         {
                             arsipNotes.length > 0 ? (
                                 arsipNotes.map((data, index) => (
-                                    <Card key={index} {...data} onToggleArchive={() => handleToggleArchive(data.id)} />
+                                    <Card key={index} {...data} onToggleArchive={() => handleToggleArchive(data.id)} onDelete={() => handleDeleteData(data.id)} />
                                 ))
                             ) : (
                                 <p className="text-red-500 text-xl font-semibold" >Arsip Tidak Tersedia</p>

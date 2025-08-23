@@ -2,7 +2,7 @@ import useEqualHeight from "../../hooks/useEqualHeight";
 import { showFormattedDate } from "../../utils";
 import Button from "../Button";
 
-export default function Card({ title, body, createdAt, archived, onToggleArchive }) {
+export default function Card({ title, body, createdAt, archived, onToggleArchive, onDelete }) {
   useEqualHeight(".card");
 
   return (
@@ -17,6 +17,7 @@ export default function Card({ title, body, createdAt, archived, onToggleArchive
         <Button
           text="Hapus"
           style="w-full bg-red-500 text-white py-1 cursor-pointer"
+          onClick={onDelete}
         />
         <Button
           text={archived ? "Active" : "Arsipkan"}
