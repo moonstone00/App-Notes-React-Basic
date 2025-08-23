@@ -1,5 +1,4 @@
 import useEqualHeight from "../../hooks/useEqualHeight";
-import { showFormattedDate } from "../../utils";
 import Button from "../Button";
 
 export default function Card({ title, body, createdAt }) {
@@ -10,7 +9,7 @@ export default function Card({ title, body, createdAt }) {
       <div className="flex-1 px-4 pt-4">
         <p className="text-lg font-bold">{title}</p>
         <p className="text-slate-500 text-xs mt-1 mb-2.5">
-          {showFormattedDate(createdAt)}
+          {createdAt}
         </p>
         <p className="text-sm">{body}</p>
       </div>

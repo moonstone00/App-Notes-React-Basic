@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "react-modal";
 import Button from "../Button";
 import { getInitialData, showFormattedDate } from "../../utils";
+import { useAtom } from "jotai";
+import { notesAtom } from "../../jotai/atoms"
 
 const customStyles = {
   content: {
@@ -22,6 +24,7 @@ export default function ModalComponent() {
   const [notes, setNotes] = React.useState(getInitialData());
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
+  const [, setNotesAtom] = useAtom(notesAtom)
   const MAXCHAR = 50
 
   function handleTitleChange(event) {
@@ -46,7 +49,7 @@ export default function ModalComponent() {
       }
 
       console.log('data', newNote)
-      setNotes([...notes, newNote])
+      setNotesAtom([...notes, newNote])
     } catch (error) {
       console.error("Error saving note:", error);
     } finally {
